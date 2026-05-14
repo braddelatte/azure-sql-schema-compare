@@ -1,0 +1,6 @@
+.env
+*.xlsx
+__pycache__/
+.ipynb_checkpoints/
+config/tables_to_compare.json
+config/databases.json

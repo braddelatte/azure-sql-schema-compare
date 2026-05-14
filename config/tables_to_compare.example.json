@@ -1,0 +1,10 @@
+[
+    {
+        "schema": "dbo",
+        "table": "table_name"
+    },
+    {
+        "schema": "dbo",
+        "table": "table_name"
+    }
+]

@@ -35,6 +35,25 @@ Generate recommended SQL Server `CREATE TABLE` scripts that:
   - Data type conflicts
   - Length mismatches
 
+## Timestamped Output Runs
+
+Each notebook execution creates a timestamped output folder.
+
+Example:
+
+```text
+output/20260515_143012/
+```
+
+This keeps:
+- schema comparison results
+- DDL outputs
+- decision reports
+
+grouped together by execution run.
+
+Older output folders are automatically cleaned up based on the configured retention limit.
+
 ## Output Reports
 
 Exports results to Excel and SQL files for analysis and migration planning.
@@ -63,6 +82,9 @@ azure-sql-schema-compare/
 │   └── tables_to_compare.example.json
 │
 ├── output/                 # ignored by Git
+│   ├── 20260515_143012/
+│   ├── 20260515_150455/
+│   └── ...
 │
 ├── output.example/
 │   ├── .gitkeep
@@ -204,6 +226,7 @@ The notebook will:
    - datatype mismatches
    - PK differences
 5. Export Excel comparison reports
+6. Create a timestamped output folder
 
 ---
 
@@ -219,19 +242,26 @@ Run all cells.
 
 The notebook will:
 
-1. Read schema comparison results
-2. Determine recommended target data types
-3. Generate consolidated `CREATE TABLE` statements
-4. Export recommended DDL to SQL files
+1. Automatically locate the latest schema comparison run
+2. Read schema comparison results
+3. Determine recommended target data types
+4. Generate consolidated `CREATE TABLE` statements
+5. Export recommended DDL to SQL files
 
 ---
 
 # Output Files
 
-Generated outputs are written to:
+Generated outputs are written to timestamped folders inside:
 
 ```text
 output/
+```
+
+Example:
+
+```text
+output/20260515_143012/
 ```
 
 Typical outputs include:
@@ -239,6 +269,10 @@ Typical outputs include:
 - `schema_compare_results.xlsx`
 - `recommended_column_decisions.xlsx`
 - `recommended_target_ddl.sql`
+
+The DDL notebook automatically uses the latest schema comparison output folder unless manually overridden.
+
+Older output folders are automatically removed based on the configured retention count.
 
 ---
 

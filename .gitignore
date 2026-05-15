@@ -1,5 +1,5 @@
 .env
-*.xlsx
+output/
 __pycache__/
 .ipynb_checkpoints/
 config/tables_to_compare.json
